@@ -246,15 +246,6 @@ class DefaultGovernanceAIService(
         else -> GovernanceDecision.ALLOW
       }
 
-      var riskScore = json.optInt("riskScore", if (decision == GovernanceDecision.ALLOW) 12 else 75)
-      val severityStr = json.optString("severity", "LOW").uppercase()
-      var severity = when (severityStr) {
-        "CRITICAL" -> GovernanceSeverity.CRITICAL
-        "HIGH" -> GovernanceSeverity.HIGH
-        "MEDIUM" -> GovernanceSeverity.MEDIUM
-        else -> GovernanceSeverity.LOW
-      }
-
       var overallEval = json.optString("overallEvaluation", "Evaluation completed.")
 
       // Parse Category Checks
@@ -288,6 +279,36 @@ class DefaultGovernanceAIService(
       val recruitmentCheck = parseCategory("recruitment", deterministicRecruitmentDetected)
       val privacyCheck = parseCategory("privacyLeak", deterministicPrivacyDetected)
       val dataLeakCheck = parseCategory("dataLeakProtection", deterministicDataLeakDetected)
+
+      // Weighted risk score calculation (Fake Answer: 20, Hallucination: 25, Privacy: 30, Data Leak: 35)
+      var calculatedRiskScore = 0
+      if (fakeAnswerCheck.status == CheckStatus.DETECTED) calculatedRiskScore += 20
+      if (hallucinationCheck.status == CheckStatus.DETECTED) calculatedRiskScore += 25
+      if (recruitmentCheck.status == CheckStatus.DETECTED) calculatedRiskScore += 15
+      if (privacyCheck.status == CheckStatus.DETECTED) calculatedRiskScore += 30
+      if (dataLeakCheck.status == CheckStatus.DETECTED) calculatedRiskScore += 35
+
+      var riskScore = if (calculatedRiskScore > 0) {
+        calculatedRiskScore.coerceIn(1, 100)
+      } else {
+        json.optInt("riskScore", if (decision == GovernanceDecision.ALLOW) 8 else 15).coerceIn(0, 30)
+      }
+
+      // Map accurately to severity levels: LOW: 0-30, MEDIUM: 31-60, HIGH: 61-80, CRITICAL: 81-100
+      var severity = when {
+        riskScore >= 81 -> GovernanceSeverity.CRITICAL
+        riskScore >= 61 -> GovernanceSeverity.HIGH
+        riskScore >= 31 -> GovernanceSeverity.MEDIUM
+        else -> GovernanceSeverity.LOW
+      }
+
+      if (riskScore >= 81) {
+        decision = GovernanceDecision.BLOCK
+      } else if (riskScore >= 61) {
+        decision = GovernanceDecision.ESCALATE
+      } else if (riskScore >= 31 && decision == GovernanceDecision.ALLOW) {
+        decision = GovernanceDecision.FLAG
+      }
 
       // Merge deterministic evidence
       val combinedEvidence = mutableListOf<String>()
