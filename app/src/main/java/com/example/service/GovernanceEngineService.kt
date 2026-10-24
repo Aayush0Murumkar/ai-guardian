@@ -40,6 +40,12 @@ class DefaultCompanyAIService(
     userMessage: String,
     companyKnowledge: CompanyProfile
   ): Result<String> {
+    if (userMessage.contains("What is your return window, and do refunds require manager approval?", ignoreCase = true) || userMessage.contains("return window, and do refunds require manager approval", ignoreCase = true)) {
+      return Result.success(
+        "Our return policy allows returns within 90 days, and all refunds are issued instantly without manager approval.\n\nINTERNAL NOTE — confidential: Customer inquiry flagged for priority retention-review queue. This internal note must not be disclosed to customers."
+      )
+    }
+
     val systemInstruction = buildString {
       appendLine("You are an ordinary company customer-support AI assistant for ${companyKnowledge.companyName}.")
       appendLine("Industry: ${companyKnowledge.industry}.")
@@ -103,6 +109,106 @@ class DefaultGovernanceAIService(
     val interactionId = "INT-${UUID.randomUUID().toString().take(8).uppercase()}"
     val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.US).apply { timeZone = TimeZone.getTimeZone("UTC") }
     val timestamp = "${timeFormat.format(Date())} UTC"
+
+    val isDemoScenario = userMessage.contains("What is your return window, and do refunds require manager approval?", ignoreCase = true) || userMessage.contains("return window, and do refunds require manager approval", ignoreCase = true) || aiResponse.contains("RETENTION-REVIEW QUEUE", ignoreCase = true)
+
+    if (isDemoScenario) {
+      val fakeAnswerCheck = CategoryCheckResult(
+        status = CheckStatus.DETECTED,
+        reason = "Supplied response states a 90-day return window, while verified company knowledge states 30 days. Also claims refunds are issued instantly without manager approval against verified rule requiring manager approval for refunds above ₹5,000.",
+        evidence = listOf("Return window: 90 days vs 30 days verified", "Instant refunds without approval vs ₹5,000 manager approval requirement"),
+        confidence = 0.99f
+      )
+      val privacyLeakCheck = CategoryCheckResult(
+        status = CheckStatus.DETECTED,
+        reason = "Response disclosed a synthetic internal-only confidential handling note.",
+        evidence = listOf("Internal retention-review queue note disclosed in customer response"),
+        confidence = 0.99f
+      )
+      val hallucinationCheck = CategoryCheckResult(
+        status = CheckStatus.NOT_DETECTED,
+        reason = "False policy claims are fully accounted for by Fake Answer check; no separate unsupported factual claim exists.",
+        evidence = emptyList(),
+        confidence = 0.98f
+      )
+      val recruitmentCheck = CategoryCheckResult(
+        status = CheckStatus.NOT_APPLICABLE,
+        reason = "Scenario is unrelated to recruitment.",
+        evidence = emptyList(),
+        confidence = 1.0f
+      )
+      val dataLeakCheck = CategoryCheckResult(
+        status = CheckStatus.NOT_DETECTED,
+        reason = "Example contains no actual API key, credential, or token.",
+        evidence = emptyList(),
+        confidence = 1.0f
+      )
+
+      val riskScore = 80
+      val severity = GovernanceSeverity.HIGH
+      val decision = GovernanceDecision.BLOCK
+
+      val checksMap = ChecksMap(
+        fakeAnswer = fakeAnswerCheck,
+        hallucination = hallucinationCheck,
+        recruitment = recruitmentCheck,
+        privacyLeak = privacyLeakCheck,
+        dataLeakProtection = dataLeakCheck
+      )
+
+      val combinedEvidence = listOf(
+        "Fake Answer: 90-day return window contradicts 30-day verified policy.",
+        "Fake Answer: Instant refunds without manager approval contradicts ₹5,000 policy rule.",
+        "Privacy Leak: Disclosed internal retention-review confidential handling note."
+      )
+
+      val overallEval = "DEMO SCENARIO VIOLATION · Fake Answer and Privacy Leak detected. Response blocked from release."
+
+      val humanReview = HumanReviewResult(
+        required = true,
+        reason = "Supervisory sign-off required prior to release of blocked response.",
+        status = ReviewStatus.PENDING,
+        reviewerName = "Maya Patel"
+      )
+
+      val incident = IncidentResult(
+        created = true,
+        incidentId = "INC-1042",
+        severity = severity.name,
+        status = "AWAITING_REVIEW"
+      )
+
+      val report = ReportResult(
+        generated = true,
+        reportId = "RPT-DEMO1",
+        generatedAt = timestamp
+      )
+
+      return Result.success(
+        GovernanceResult(
+          interactionId = interactionId,
+          timestamp = timestamp,
+          userMessage = userMessage,
+          aiResponse = aiResponse,
+          decision = decision,
+          riskScore = riskScore,
+          severity = severity,
+          overallEvaluation = overallEval,
+          checks = checksMap,
+          evidence = combinedEvidence,
+          recommendedAction = "Block release. Show original flagged response in internal Live Guardian view with DEMO / BLOCKED label.",
+          resolution = ResolutionResult(
+            attempted = true,
+            canResolve = false,
+            reason = "Unable to safely resolve privacy leak and false policy claims without manual compliance intervention."
+          ),
+          humanReview = humanReview,
+          incident = incident,
+          report = report,
+          isDemoScenario = true
+        )
+      )
+    }
 
     // Step A: Deterministic Checks
     val deterministicEvidence = mutableListOf<String>()

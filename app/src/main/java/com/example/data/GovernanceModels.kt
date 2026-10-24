@@ -105,7 +105,8 @@ data class GovernanceResult(
   val isError: Boolean = false,
   val errorMessage: String? = null,
   val stages: List<PipelineStage> = emptyList(),
-  val stageDetails: String? = null
+  val stageDetails: String? = null,
+  val isDemoScenario: Boolean = false
 )
 
 data class TimelineItem(

@@ -38,6 +38,7 @@ fun LiveGuardianChatScreen(
   var inputPrompt by remember { mutableStateOf("") }
 
   val samplePrompts = listOf(
+    "What is your return window, and do refunds require manager approval?",
     "What are your customer support hours?",
     "What is your return policy?",
     "My product was damaged after 8 months. Can I get a replacement?",
@@ -165,7 +166,6 @@ fun LiveGuardianChatScreen(
                   .border(1.dp, BrandBorder, RoundedCornerShape(8.dp))
                   .clickable {
                     inputPrompt = prompt
-                    viewModel.runLiveInteraction(prompt)
                   }
                   .padding(horizontal = 10.dp, vertical = 8.dp)
               ) {
@@ -249,7 +249,27 @@ fun GovernanceResultCard(
           Text(res.interactionId, fontSize = 14.sp, fontWeight = FontWeight.Bold, color = BrandNavy)
           Text(res.timestamp, fontSize = 11.sp, color = BrandSecondary)
         }
-        DecisionBadge(res.decision)
+        Row(
+          verticalAlignment = Alignment.CenterVertically,
+          horizontalArrangement = Arrangement.spacedBy(6.dp)
+        ) {
+          if (res.isDemoScenario) {
+            Box(
+              modifier = Modifier
+                .clip(RoundedCornerShape(6.dp))
+                .background(BrandCriticalBg)
+                .padding(horizontal = 6.dp, vertical = 3.dp)
+            ) {
+              Text(
+                text = "DEMO / BLOCKED",
+                fontSize = 11.sp,
+                fontWeight = FontWeight.Bold,
+                color = BrandCriticalText
+              )
+            }
+          }
+          DecisionBadge(res.decision)
+        }
       }
 
       if (res.stages.isNotEmpty()) {
