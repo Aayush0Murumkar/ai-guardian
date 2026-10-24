@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Human review workspace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              primary: '#0B6396',
+              primaryHover: '#084F78',
+              tealLight: '#EBF5FA',
+              tealBorder: '#B8E0F3'
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-styling">
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #FFFFFF;
+      color: #1E293B;
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-slate-800 antialiased p-4 sm:p-6 max-w-xl mx-auto pb-16">
+<!-- BEGIN: PageHeader -->
+<header class="mb-5" data-purpose="header-section">
+<!-- Eyebrow and Status Row -->
+<div class="flex items-center justify-between text-xs tracking-wider uppercase font-semibold text-slate-500 mb-2">
+<span>ACME CORPORATION / PRODUCTION</span>
+<span class="inline-flex items-center text-slate-600 font-medium normal-case tracking-normal text-xs">
+<span class="w-2 h-2 rounded-full bg-emerald-500 mr-1.5 inline-block"></span>
+        Live · 14:32 UTC
+      </span>
+</div>
+<!-- Main Title -->
+<h1 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-1">Human review workspace</h1>
+<p class="text-slate-500 text-sm">Review escalations. Make the final call.</p>
+</header>
+<!-- END: PageHeader -->
+<!-- BEGIN: MetricsOverview -->
+<section class="border border-slate-200 rounded-2xl p-4 sm:p-5 mb-5 shadow-sm bg-white" data-purpose="metrics-summary">
+<div class="grid grid-cols-3 divide-x divide-slate-100">
+<div class="pr-2">
+<p class="text-xs text-slate-500 font-medium mb-1">Awaiting review</p>
+<p class="text-3xl font-bold text-slate-900 tracking-tight">3</p>
+</div>
+<div class="px-3">
+<p class="text-xs text-slate-500 font-medium mb-1">Oldest waiting</p>
+<p class="text-3xl font-bold text-slate-900 tracking-tight">20m</p>
+</div>
+<div class="pl-3">
+<p class="text-xs text-slate-500 font-medium mb-1">Resolved today</p>
+<p class="text-3xl font-bold text-slate-900 tracking-tight">42</p>
+</div>
+</div>
+</section>
+<!-- END: MetricsOverview -->
+<!-- BEGIN: SubBar -->
+<div class="flex items-center justify-between mb-3 text-sm px-0.5" data-purpose="sub-bar">
+<span class="text-slate-600 font-medium">Priority review · 1 of 3</span>
+<span class="bg-[#EFF8FC] text-[#0B6396] text-xs font-semibold px-2.5 py-1 rounded-md">Assigned to you</span>
+</div>
+<!-- END: SubBar -->
+<!-- BEGIN: ActiveIncidentCard -->
+<article class="border border-slate-200 rounded-2xl p-4 sm:p-5 mb-5 shadow-sm bg-white" data-purpose="incident-details">
+<!-- Header: Ticket & Actions -->
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center space-x-2">
+<span class="text-base font-bold text-slate-900">INC-1042</span>
+<span class="bg-rose-50 text-rose-600 text-xs font-semibold px-2 py-0.5 rounded border border-rose-100">Critical</span>
+</div>
+<!-- Action Menu Icon -->
+<button aria-label="Incident options" class="text-slate-400 hover:text-slate-600 p-1">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20">
+<circle cx="4" cy="10" r="1.5"></circle>
+<circle cx="10" cy="10" r="1.5"></circle>
+<circle cx="16" cy="10" r="1.5"></circle>
+</svg>
+</button>
+</div>
+<!-- Title & Metadata -->
+<h2 class="text-2xl font-bold text-slate-900 mb-2">Customer data exposure</h2>
+<div class="flex items-center text-xs text-slate-500 space-x-2 mb-4">
+<svg class="w-4 h-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Atlas Support · C-8821 · 14:27 UTC</span>
+</div>
+<!-- Status & SLA Pill Row -->
+<div class="flex items-center justify-between mb-4">
+<span class="inline-flex items-center bg-[#FEF6E8] text-[#9A6700] text-xs font-medium px-2.5 py-1 rounded-full border border-[#FBEAC8]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#9A6700] mr-1.5 inline-block"></span>
+        Awaiting human review
+      </span>
+<span class="text-xs text-slate-500 font-medium">12m to SLA</span>
+</div>
+<!-- Yellow Callout: Violation Info -->
+<div class="bg-[#FFF9EA] border border-[#FDE8BB] rounded-xl p-3.5 mb-5" data-purpose="violation-warning">
+<div class="flex items-start space-x-2 mb-1.5">
+<svg class="w-4 h-4 text-[#B47805] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-xs font-semibold text-[#8C5803]">PII-04 · Cross-customer data disclosure</span>
+</div>
+<p class="text-xs text-[#6A4706] leading-relaxed mb-2">
+        An unverified user requested another customer's order. The response exposed a shipping address and order value.
+      </p>
+<p class="text-[11px] font-medium text-[#A66E04]">
+        Detection confidence 99.2% · Privacy policy v3.4
+      </p>
+</div>
+<!-- Chat Messages Preview -->
+<div class="space-y-4 mb-4 text-xs" data-purpose="chat-messages">
+<!-- Customer Message -->
+<div>
+<div class="flex items-center justify-between text-[11px] font-bold text-slate-600 mb-1 tracking-wider uppercase">
+<span>CUSTOMER</span>
+<span class="font-normal text-slate-400">14:27:05</span>
+</div>
+<p class="text-slate-800 text-xs leading-normal">
+          Can you send me the last order details for jamie@northstar.example?
+        </p>
+</div>
+<!-- Atlas Support Blocked Message -->
+<div>
+<div class="flex items-center justify-between text-[11px] font-bold text-rose-600 mb-1 tracking-wider uppercase">
+<span>ATLAS SUPPORT · BLOCKED</span>
+<span class="font-normal text-rose-400">14:27:08</span>
+</div>
+<div class="bg-rose-50/60 border-l-2 border-rose-500 rounded-r-lg p-2.5 text-slate-800 text-xs leading-normal">
+          I found Jamie's account. Their shipping address is 18 Oak Lane and their order total is $248.
+        </div>
+</div>
+</div>
+<!-- Auto-correction Failed Notification -->
+<div class="flex items-start space-x-2.5 pt-3 border-t border-slate-100 text-xs" data-purpose="retry-failed-notice">
+<div class="text-amber-600 flex-shrink-0 mt-0.5">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="9"></circle>
+<path d="M12 8v4m0 4h.01"></path>
+</svg>
+</div>
+<div>
+<p class="font-semibold text-slate-800">Auto-correction failed validation</p>
+<p class="text-slate-500 mt-0.5 leading-relaxed">
+          14:28 · Redaction retry still included the order value. Automation paused; original response remains blocked.
+        </p>
+</div>
+</div>
+</article>
+<!-- END: ActiveIncidentCard -->
+<!-- BEGIN: YourDecisionSection -->
+<section class="border border-slate-200 rounded-2xl p-4 sm:p-5 mb-5 shadow-sm bg-white" data-purpose="decision-panel">
+<!-- Header -->
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-base font-bold text-slate-900">Your decision</h3>
+<span class="bg-[#EFF8FC] text-[#0B6396] text-xs font-semibold px-2.5 py-1 rounded-md">Maya Patel</span>
+</div>
+<!-- Recommended Correction Sub-heading -->
+<div class="flex items-center space-x-1.5 text-slate-900 font-semibold text-sm mb-2.5">
+<svg class="w-4 h-4 text-sky-600 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Recommended correction</span>
+</div>
+<!-- Suggested Message Bubble -->
+<div class="bg-[#EDF7FC] border border-[#CDE5F4] rounded-xl p-3.5 mb-2 text-slate-800 text-xs sm:text-sm leading-relaxed">
+      I can only share order details after verifying your account. Please sign in through our secure portal.
+    </div>
+<p class="text-xs text-slate-500 mb-5 leading-normal">
+      Replace the blocked reply and require verified sign-in. No customer data will be sent.
+    </p>
+<!-- Review Note Textarea -->
+<div class="mb-4">
+<label class="block text-xs font-bold text-slate-800 mb-2" for="review-note">Review note (optional)</label>
+<textarea class="w-full text-xs rounded-xl border border-slate-200 p-3 placeholder-slate-400 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition" id="review-note" placeholder="Add context for the audit trail..." rows="3"></textarea>
+</div>
+<!-- Action Buttons -->
+<div class="space-y-2 mb-3">
+<!-- Primary Approve Button -->
+<button class="w-full bg-[#0B6396] hover:bg-[#09527D] active:scale-[0.99] text-white font-semibold text-sm py-3 px-4 rounded-xl flex items-center justify-center space-x-2 transition shadow-sm">
+<svg class="w-4 h-4 stroke-[2.5]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+<span>Approve correction</span>
+</button>
+<!-- Secondary Action Row -->
+<div class="grid grid-cols-2 gap-2">
+<button class="w-full bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 font-semibold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center space-x-1.5 transition">
+<svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<polyline points="9 14 4 9 9 4"></polyline>
+<path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
+</svg>
+<span>Request changes</span>
+</button>
+<button class="w-full bg-slate-50 border border-slate-200 text-slate-400 font-semibold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center cursor-not-allowed">
+          Resolve
+        </button>
+</div>
+</div>
+<!-- Footnote / Microcopy -->
+<p class="text-[11px] text-slate-400 leading-normal">
+      Approval sends the safe reply. Resolve becomes available after delivery is verified.
+    </p>
+</section>
+<!-- END: YourDecisionSection -->
+<!-- BEGIN: IncidentTimelineSection -->
+<section class="border border-slate-200 rounded-2xl p-4 sm:p-5 mb-5 shadow-sm bg-white" data-purpose="timeline-section">
+<!-- Header -->
+<div class="flex items-center justify-between mb-5">
+<h3 class="text-base font-bold text-slate-900">Incident timeline</h3>
+<span class="text-xs text-slate-400 font-medium">UTC · Audit trail</span>
+</div>
+<!-- Timeline List -->
+<div class="relative pl-6 space-y-6 text-xs before:absolute before:left-2 before:top-2 before:bottom-2 before:w-[1px] before:bg-slate-200">
+<!-- Event 1: Red -->
+<div class="relative">
+<div class="absolute -left-6 top-0.5 w-4 h-4 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-rose-500 ring-4 ring-white"></div>
+</div>
+<div class="flex items-baseline space-x-3">
+<span class="text-slate-400 text-[11px] w-14 flex-shrink-0">14:27:08</span>
+<div>
+<p class="font-bold text-slate-900">Risk detected; response blocked</p>
+<p class="text-slate-500 mt-0.5">PII-04 triggered before delivery.</p>
+</div>
+</div>
+</div>
+<!-- Event 2: Amber -->
+<div class="relative">
+<div class="absolute -left-6 top-0.5 w-4 h-4 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-amber-500 ring-4 ring-white"></div>
+</div>
+<div class="flex items-baseline space-x-3">
+<span class="text-slate-400 text-[11px] w-14 flex-shrink-0">14:28:11</span>
+<div>
+<p class="font-bold text-slate-900">Auto-redaction retry failed</p>
+<p class="text-slate-500 mt-0.5">Order value remained in the response.</p>
+</div>
+</div>
+</div>
+<!-- Event 3: Blue -->
+<div class="relative">
+<div class="absolute -left-6 top-0.5 w-4 h-4 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-sky-500 ring-4 ring-white"></div>
+</div>
+<div class="flex items-baseline space-x-3">
+<span class="text-slate-400 text-[11px] w-14 flex-shrink-0">14:29:02</span>
+<div>
+<p class="font-bold text-slate-900">Escalated to human review</p>
+<p class="text-slate-500 mt-0.5">Assigned to Maya Patel by Alex Chen.</p>
+</div>
+</div>
+</div>
+<!-- Event 4: Neutral/Gray -->
+<div class="relative">
+<div class="absolute -left-6 top-0.5 w-4 h-4 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-slate-300 ring-4 ring-white"></div>
+</div>
+<div class="flex items-baseline space-x-3">
+<span class="text-slate-400 text-[11px] w-14 flex-shrink-0">14:32:00</span>
+<div>
+<p class="font-bold text-slate-900">Decision pending</p>
+<p class="text-slate-500 mt-0.5">No correction approved or sent yet.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: IncidentTimelineSection -->
+<!-- BEGIN: ReviewQueueSection -->
+<section class="border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm bg-white" data-purpose="queue-section">
+<!-- Queue Header -->
+<div class="flex items-center justify-between mb-1">
+<h3 class="text-base font-bold text-slate-900">Review queue</h3>
+<span class="text-xs text-slate-500 font-medium">3 pending</span>
+</div>
+<!-- Sorting Subheader -->
+<div class="flex items-center justify-between mb-4">
+<span class="text-xs text-slate-400 font-medium">Priority, then oldest first</span>
+<svg class="w-4 h-4 text-slate-400 cursor-pointer" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M3 4h18M3 8h12m-12 4h6m10 4l-4 4m0 0l-4-4m4 4V10" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<!-- Queue Cards List -->
+<div class="space-y-3">
+<!-- Card 1: INC-1042 (Selected/Active) -->
+<div class="border-2 border-[#81C8EC] bg-[#F7FCFF] rounded-xl p-3.5 cursor-pointer shadow-sm">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-bold text-slate-900">INC-1042</span>
+<span class="bg-rose-50 text-rose-600 text-[11px] font-semibold px-2 py-0.5 rounded border border-rose-100">Critical</span>
+</div>
+<p class="text-sm font-bold text-slate-900 mb-1">Customer data exposure</p>
+<div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+<span>Atlas Support</span>
+<span>3m waiting</span>
+</div>
+<div class="flex items-center space-x-1.5 text-[#0B6396] text-xs font-semibold pt-1">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Assigned to you · Maya Patel</span>
+</div>
+</div>
+<!-- Card 2: INC-1040 -->
+<div class="border border-slate-200 bg-white rounded-xl p-3.5 hover:border-slate-300 transition cursor-pointer">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-bold text-slate-900">INC-1040</span>
+<span class="bg-amber-50 text-amber-700 text-[11px] font-semibold px-2 py-0.5 rounded border border-amber-100">High</span>
+</div>
+<p class="text-sm font-bold text-slate-900 mb-1">Unsupported pricing claim</p>
+<div class="flex items-center justify-between text-xs text-slate-500">
+<span>Mercury Sales</span>
+<span>14m waiting</span>
+</div>
+</div>
+<!-- Card 3: INC-1038 -->
+<div class="border border-slate-200 bg-white rounded-xl p-3.5 hover:border-slate-300 transition cursor-pointer">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-bold text-slate-900">INC-1038</span>
+<span class="bg-sky-50 text-sky-700 text-[11px] font-semibold px-2 py-0.5 rounded border border-sky-100">Medium</span>
+</div>
+<p class="text-sm font-bold text-slate-900 mb-1">Sensitive attribute inference</p>
+<div class="flex items-center justify-between text-xs text-slate-500">
+<span>HR Assist</span>
+<span>20m waiting</span>
+</div>
+</div>
+</div>
+</section>
+<!-- END: ReviewQueueSection -->
+</body></html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Monitoring Overview</title>
+<!-- Tailwind CSS CDN with forms and container-queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Phosphor Icons for precise line icons -->
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#102A43',
+              dark: '#1E293B',
+              muted: '#627D98',
+              border: '#E2E8F0',
+              bg: '#F8FAFC',
+              mint: '#EBFBEE',
+              mintDark: '#2B8A3E'
+            }
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Text"', '"SF Pro Display"', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-typography">
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .text-title {
+      color: #102a43;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#334E68] font-sans min-h-screen pb-12 antialiased selection:bg-blue-100">
+<!-- BEGIN: MainContainer -->
+<main class="max-w-[460px] mx-auto px-4 pt-6 space-y-5" data-purpose="mobile-feed-container">
+<!-- BEGIN: HeaderSection -->
+<header class="space-y-1.5 pt-1" data-purpose="page-header">
+<div class="flex items-center justify-between text-[11px] font-semibold tracking-wider text-[#627D98] uppercase">
+<span>ACME CORPORATION / PRODUCTION</span>
+<div class="flex items-center gap-1.5 text-[#2B8A3E] font-medium tracking-normal capitalize">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-[#2B8A3E]"></span>
+<span>Live · 14:32 UTC</span>
+</div>
+</div>
+<h1 class="text-[28px] leading-tight font-extrabold text-[#102A43] tracking-tight">Monitoring overview</h1>
+<p class="text-[13.5px] font-normal text-[#627D98]">Every conversation. Clear signals. Safer AI.</p>
+</header>
+<!-- END: HeaderSection -->
+<!-- BEGIN: SystemStatusCard -->
+<div class="bg-[#EBFBEE] border border-[#D3F9D8] rounded-xl p-3.5 flex items-center gap-3.5" data-purpose="bot-status-alert">
+<div class="text-[#2B8A3E] text-2xl flex-shrink-0 flex items-center justify-center">
+<i class="ph-bold ph-shield-check"></i>
+</div>
+<div class="space-y-0.5">
+<h2 class="text-[13.5px] font-bold text-[#1E4620] leading-snug">All 12 bots connected</h2>
+<p class="text-[12px] font-medium text-[#2F6834]">212 ms detection latency · Synced 7s ago</p>
+</div>
+</div>
+<!-- END: SystemStatusCard -->
+<!-- BEGIN: MetricsGrid -->
+<div class="grid grid-cols-2 gap-3" data-purpose="key-metrics-grid">
+<!-- Metric 1: Live Conversations -->
+<div class="bg-white border border-[#E2E8F0] rounded-xl p-3.5 shadow-sm space-y-1 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-[12px] font-medium text-[#627D98]">Live conversations</span>
+<i class="ph ph-chat-text text-[#2B6CB0] text-base"></i>
+</div>
+<div>
+<div class="text-[26px] font-bold text-[#102A43] leading-tight">128</div>
+<div class="text-[11px] text-[#627D98] mt-1 font-normal">+12 in the last hour</div>
+</div>
+</div>
+<!-- Metric 2: Open Incidents -->
+<div class="bg-white border border-[#E2E8F0] rounded-xl p-3.5 shadow-sm space-y-1 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-[12px] font-medium text-[#627D98]">Open incidents</span>
+<i class="ph ph-warning text-[#C05621] text-base"></i>
+</div>
+<div>
+<div class="text-[26px] font-bold text-[#102A43] leading-tight">7</div>
+<div class="text-[11px] text-[#627D98] mt-1 font-normal">4 automated · 3 escalated</div>
+</div>
+</div>
+<!-- Metric 3: Awaiting Review -->
+<div class="bg-white border border-[#E2E8F0] rounded-xl p-3.5 shadow-sm space-y-1 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-[12px] font-medium text-[#627D98]">Awaiting review</span>
+<i class="ph ph-user-focus text-[#C53030] text-base"></i>
+</div>
+<div>
+<div class="text-[26px] font-bold text-[#102A43] leading-tight">3</div>
+<div class="text-[11px] text-[#627D98] mt-1 font-normal">1 critical requires attention</div>
+</div>
+</div>
+<!-- Metric 4: Resolved Today -->
+<div class="bg-white border border-[#E2E8F0] rounded-xl p-3.5 shadow-sm space-y-1 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-[12px] font-medium text-[#627D98]">Resolved today</span>
+<i class="ph ph-check-circle text-[#2B8A3E] text-base"></i>
+</div>
+<div>
+<div class="text-[26px] font-bold text-[#102A43] leading-tight">42</div>
+<div class="text-[11px] text-[#627D98] mt-1 font-normal">34 auto · 8 human</div>
+</div>
+</div>
+</div>
+<!-- END: MetricsGrid -->
+<!-- BEGIN: HumanOversightSection -->
+<section class="space-y-3 pt-2" data-purpose="human-oversight-section">
+<!-- Section Title & Badge -->
+<div class="flex items-center justify-between">
+<h2 class="text-[16px] font-bold text-[#102A43]">Requires human oversight</h2>
+<span class="px-2 py-0.5 text-[11px] font-bold text-[#C53030] bg-[#FFF5F5] border border-[#FED7D7] rounded-full">1 critical</span>
+</div>
+<!-- Card: Featured Incident (INC-1042) -->
+<div class="bg-white border border-[#E2E8F0] rounded-2xl p-4 shadow-sm space-y-4" data-purpose="featured-incident-card">
+<!-- Incident Card Header -->
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-[13px] font-bold text-[#102A43]">INC-1042</span>
+<span class="px-2 py-0.5 text-[11px] font-semibold text-[#9B2C2C] bg-[#FFF5F5] rounded-full">Critical</span>
+</div>
+<button aria-label="Incident options" class="text-gray-400 hover:text-gray-600" type="button">
+<i class="ph ph-dots-three text-lg font-bold"></i>
+</button>
+</div>
+<h3 class="text-[17px] font-bold text-[#102A43] leading-snug">Customer data exposure</h3>
+<p class="text-[12px] text-[#627D98]">Atlas Support · C-8821 · 14:27 UTC</p>
+</div>
+<!-- SLA Status Pill Row -->
+<div class="flex items-center justify-between pt-0.5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11.5px] font-medium text-[#744210] bg-[#FEFCBF]/60 rounded-full border border-[#FAF089]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#B7791F]"></span>
+            Awaiting human review
+          </span>
+<span class="text-[12px] font-medium text-[#718096]">12m to SLA</span>
+</div>
+<!-- Yellow Warning Callout -->
+<div class="bg-[#FFFDF0] border border-[#FEEBC8] rounded-xl p-3 flex gap-2.5 items-start">
+<i class="ph-bold ph-shield-warning text-[#B7791F] text-lg flex-shrink-0 mt-0.5"></i>
+<div class="space-y-0.5">
+<p class="text-[12px] font-bold text-[#7B341E]">PII-04 · Cross-customer data disclosure</p>
+<p class="text-[11.5px] text-[#7B341E]/90 leading-tight">Identity not verified. Response held before delivery.</p>
+</div>
+</div>
+<!-- Conversation Logs -->
+<div class="space-y-2.5 pt-1 text-[12.5px]">
+<!-- Customer Query -->
+<div class="space-y-1">
+<div class="flex items-center justify-between text-[10.5px] font-bold tracking-wider text-[#718096] uppercase">
+<span>CUSTOMER</span>
+<span>14:27:05</span>
+</div>
+<p class="text-[#2D3748] leading-relaxed">Can you send me the last order details for jamie@northstar.example?</p>
+</div>
+<!-- Bot Blocked Response (Red Bubble) -->
+<div class="bg-[#FFF5F5] border-l-2 border-[#E53E3E] rounded-r-lg p-2.5 space-y-1">
+<div class="flex items-center justify-between text-[10.5px] font-bold tracking-wider text-[#9B2C2C] uppercase">
+<span>ATLAS SUPPORT · BLOCKED</span>
+<span>14:27:08</span>
+</div>
+<p class="text-[#742A2A] leading-relaxed text-[12px]">
+              I found Jamie's account. Their shipping address is 18 Oak Lane and their order total is $248.
+            </p>
+</div>
+</div>
+<!-- Recommended Correction Box -->
+<div class="space-y-2">
+<div class="flex items-center gap-1.5 text-[12px] font-bold text-[#102A43]">
+<i class="ph-bold ph-sparkle text-[#3182CE]"></i>
+<span>Recommended correction</span>
+</div>
+<div class="bg-[#EBF8FF] rounded-xl p-3 text-[12px] text-[#2B6CB0] leading-relaxed">
+            I can only share order details after verifying your account. Please sign in through our secure portal.
+          </div>
+</div>
+<!-- Auto-correction Failure Alert -->
+<div class="flex items-start gap-2 pt-1 text-[#975A16]">
+<i class="ph-bold ph-warning-circle text-[17px] flex-shrink-0 mt-0.5"></i>
+<div class="space-y-0.5">
+<p class="text-[12.5px] font-bold text-[#744210] leading-tight">Auto-correction failed validation</p>
+<p class="text-[11.5px] text-[#975A16]">1 retry · Residual order value detected. Escalated 14:29.</p>
+</div>
+</div>
+<hr class="border-[#EDF2F7]"/>
+<!-- Escalated To Footer / Action -->
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-[#EBF8FF] text-[#3182CE] flex items-center justify-center flex-shrink-0 text-lg">
+<i class="ph ph-user-circle"></i>
+</div>
+<div>
+<p class="text-[12px] font-bold text-[#102A43]">Escalated to Maya Patel</p>
+<p class="text-[10.5px] text-[#718096]">Human supervisor · Waiting since 14:29</p>
+</div>
+</div>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-[#CBD5E0] hover:bg-gray-50 text-[#102A43] font-bold text-[12px] rounded-lg shadow-xs transition-colors" type="button">
+<i class="ph-bold ph-arrow-up-right text-[12px]"></i>
+<span>View review</span>
+</button>
+</div>
+</div>
+</section>
+<!-- END: HumanOversightSection -->
+<!-- BEGIN: IncidentTimelineSection -->
+<section class="bg-white border border-[#E2E8F0] rounded-2xl p-4 shadow-sm space-y-4" data-purpose="incident-timeline">
+<div class="flex items-center justify-between pb-1">
+<h3 class="text-[15px] font-bold text-[#102A43]">Incident timeline</h3>
+<span class="text-[11px] font-medium text-[#718096]">UTC · Audit trail</span>
+</div>
+<!-- Timeline List -->
+<div class="relative pl-6 space-y-6 before:content-[''] before:absolute before:left-[4px] before:top-2 before:bottom-2 before:w-[1.5px] before:bg-[#E2E8F0]">
+<!-- Timeline Item 1 -->
+<div class="relative space-y-0.5">
+<div class="absolute -left-[24px] top-1 w-2.5 h-2.5 rounded-full bg-[#E53E3E] ring-4 ring-white"></div>
+<div class="flex items-baseline gap-2">
+<span class="text-[11.5px] text-[#718096] font-mono">14:27:08</span>
+<span class="text-[12.5px] font-bold text-[#102A43]">Risk detected; response blocked</span>
+</div>
+<p class="text-[11.5px] text-[#718096]">PII-04 triggered before delivery.</p>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative space-y-0.5">
+<div class="absolute -left-[24px] top-1 w-2.5 h-2.5 rounded-full bg-[#D69E2E] ring-4 ring-white"></div>
+<div class="flex items-baseline gap-2">
+<span class="text-[11.5px] text-[#718096] font-mono">14:28:11</span>
+<span class="text-[12.5px] font-bold text-[#102A43]">Auto-redaction retry failed</span>
+</div>
+<p class="text-[11.5px] text-[#718096]">Order value remained in the response.</p>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative space-y-0.5">
+<div class="absolute -left-[24px] top-1 w-2.5 h-2.5 rounded-full bg-[#3182CE] ring-4 ring-white"></div>
+<div class="flex items-baseline gap-2">
+<span class="text-[11.5px] text-[#718096] font-mono">14:29:02</span>
+<span class="text-[12.5px] font-bold text-[#102A43]">Escalated to human review</span>
+</div>
+<p class="text-[11.5px] text-[#718096]">Assigned to Maya Patel by Alex Chen.</p>
+</div>
+<!-- Timeline Item 4 -->
+<div class="relative space-y-0.5">
+<div class="absolute -left-[24px] top-1 w-2.5 h-2.5 rounded-full bg-[#A0AEC0] ring-4 ring-white"></div>
+<div class="flex items-baseline gap-2">
+<span class="text-[11.5px] text-[#718096] font-mono">14:32:00</span>
+<span class="text-[12.5px] font-bold text-[#102A43]">Decision pending</span>
+</div>
+<p class="text-[11.5px] text-[#718096]">No correction approved or sent yet.</p>
+</div>
+</div>
+</section>
+<!-- END: IncidentTimelineSection -->
+<!-- BEGIN: MonitoringActivitySection -->
+<section class="bg-white border border-[#E2E8F0] rounded-2xl p-4 shadow-sm space-y-3.5" data-purpose="monitoring-activity-chart">
+<!-- Activity Header -->
+<div class="flex items-center justify-between">
+<h3 class="text-[15px] font-bold text-[#102A43]">Monitoring activity</h3>
+<span class="text-[11px] font-medium text-[#718096]">Last 6 hours</span>
+</div>
+<!-- Chart Legend -->
+<div class="flex items-center gap-4 text-[11px] font-medium text-[#718096]">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-xs bg-[#09679C]"></span>
+<span>Conversations</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3.5 h-0.5 bg-[#9C4221] rounded-full"></span>
+<span>Flags / hour</span>
+</div>
+</div>
+<!-- Chart Display Area -->
+<div class="relative pt-2 pb-1" data-purpose="stylized-composite-chart">
+<!-- Scale Labels Left/Right -->
+<div class="flex justify-between text-[10px] text-[#A0AEC0] pb-1 font-mono">
+<span>5k</span>
+<span>12</span>
+</div>
+<div class="relative h-24 flex items-end">
+<!-- Background Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-40">
+<div class="w-full border-b border-dashed border-[#CBD5E0]"></div>
+<div class="w-full border-b border-dashed border-[#CBD5E0]"></div>
+<div class="w-full border-b border-gray-200"></div>
+</div>
+<!-- Bar Chart Columns (6 hours) -->
+<div class="w-full h-full flex items-end justify-between px-2 z-0">
+<div class="w-4 bg-[#BEE3F8] rounded-t-sm" style="height: 38%;"></div>
+<div class="w-4 bg-[#BEE3F8] rounded-t-sm" style="height: 48%;"></div>
+<div class="w-4 bg-[#BEE3F8] rounded-t-sm" style="height: 70%;"></div>
+<div class="w-4 bg-[#BEE3F8] rounded-t-sm" style="height: 82%;"></div>
+<div class="w-4 bg-[#BEE3F8] rounded-t-sm" style="height: 78%;"></div>
+<div class="w-4 bg-[#09679C] rounded-t-sm" style="height: 92%;"></div>
+</div>
+<!-- Overlay SVG Trend Line (Flags/hr) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-visible" preserveaspectratio="none" viewbox="0 0 100 100">
+<polyline fill="none" points="6,82 22,72 38,84 54,65 70,52 86,68 96,75" stroke="#9C4221" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></polyline>
+</svg>
+</div>
+<div class="flex justify-between text-[10px] text-[#A0AEC0] pt-1 font-mono">
+<span>0</span>
+<span>0</span>
+</div>
+<!-- Time Axis Labels -->
+<div class="flex justify-between text-[10px] text-[#718096] pt-2 px-1 font-medium">
+<span>09:00</span>
+<span>10:00</span>
+<span>11:00</span>
+<span>12:00</span>
+<span>13:00</span>
+<span>14:00</span>
+</div>
+</div>
+<!-- Chart Sub-bar Information -->
+<div class="pt-2 border-t border-[#EDF2F7] flex items-center justify-between text-[12px] font-medium">
+<div class="flex items-center gap-1.5 text-[#2B8A3E]">
+<i class="ph-bold ph-shield-check text-sm"></i>
+<span>12 / 12 bots healthy</span>
+</div>
+<div class="text-[#718096] text-[11px]">Latency 212 ms</div>
+</div>
+</section>
+<!-- END: MonitoringActivitySection -->
+<!-- BEGIN: RecentIncidentsSection -->
+<section class="space-y-3 pt-2" data-purpose="recent-incidents-list">
+<!-- Section Header -->
+<div class="flex items-center justify-between">
+<h3 class="text-[16px] font-bold text-[#102A43]">Recent incidents</h3>
+<span class="text-[12px] font-medium text-[#718096]">7 open</span>
+</div>
+<!-- Segmented Tab Controls -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 bg-[#EBF8FF] text-[#2B6CB0] font-bold text-[12px] rounded-lg border border-[#BEE3F8]" type="button">
+            All incidents
+          </button>
+<button class="px-3 py-1 bg-white text-[#718096] hover:bg-gray-50 font-medium text-[12px] rounded-lg border border-transparent" type="button">
+            Escalated · 3
+          </button>
+</div>
+<button aria-label="Filter incidents" class="text-gray-400 hover:text-gray-600 p-1" type="button">
+<i class="ph-bold ph-sliders-horizontal text-base"></i>
+</button>
+</div>
+<!-- Incident Rows List -->
+<div class="space-y-2 pt-1" data-purpose="incidents-items">
+<!-- Incident 1 (Selected/Highlighted with light blue tint border) -->
+<article class="bg-[#F0F8FF] border border-[#BEE3F8] rounded-xl p-3.5 flex items-center justify-between hover:bg-blue-50/70 transition cursor-pointer">
+<div class="space-y-1.5">
+<h4 class="text-[13px] font-bold text-[#102A43] leading-snug">INC-1042 · Customer data exposure</h4>
+<p class="text-[11.5px] text-[#718096]">Atlas Support · 14:27 UTC</p>
+<div class="flex items-center gap-2 pt-0.5">
+<span class="px-2 py-0.5 text-[10px] font-bold text-[#9B2C2C] bg-[#FFF5F5] rounded">Critical</span>
+<span class="px-2 py-0.5 text-[10px] font-bold text-[#744210] bg-[#FEFCBF] rounded">Human review</span>
+</div>
+</div>
+<i class="ph-bold ph-caret-right text-sm text-[#3182CE]"></i>
+</article>
+<!-- Incident 2 -->
+<article class="bg-white border border-[#E2E8F0] rounded-xl p-3.5 flex items-center justify-between hover:bg-gray-50 transition cursor-pointer shadow-xs">
+<div class="space-y-1.5">
+<h4 class="text-[13px] font-bold text-[#102A43] leading-snug">INC-1040 · Unsupported pricing claim</h4>
+<p class="text-[11.5px] text-[#718096]">Mercury Sales · 14:18 UTC</p>
+<div class="flex items-center gap-2 pt-0.5">
+<span class="px-2 py-0.5 text-[10px] font-bold text-[#9C4221] bg-[#FFFAF0] rounded border border-[#FEEBC8]">High</span>
+<span class="px-2 py-0.5 text-[10px] font-bold text-[#744210] bg-[#FEFCBF] rounded">Human review</span>
+</div>
+</div>
+<i class="ph-bold ph-caret-right text-sm text-gray-400"></i>
+</article>
+<!-- Incident 3 -->
+<article class="bg-white border border-[#E2E8F0] rounded-xl p-3.5 flex items-center justify-between hover:bg-gray-50 transition cursor-pointer shadow-xs">
+<div class="space-y-1.5">
+<h4 class="text-[13px] font-bold text-[#102A43] leading-snug">INC-1038 · Sensitive attribute inference</h4>
+<p class="text-[11.5px] text-[#718096]">HR Assist · 14:12 UTC</p>
+<div class="flex items-center gap-2 pt-0.5">
+<span class="px-2 py-0.5 text-[10px] font-bold text-[#2B6CB0] bg-[#EBF8FF] rounded">Medium</span>
+<span class="px-2 py-0.5 text-[10px] font-bold text-[#744210] bg-[#FEFCBF] rounded">Human review</span>
+</div>
+</div>
+<i class="ph-bold ph-caret-right text-sm text-gray-400"></i>
+</article>
+<!-- Incident 4 -->
+<article class="bg-white border border-[#E2E8F0] rounded-xl p-3.5 flex items-center justify-between hover:bg-gray-50 transition cursor-pointer shadow-xs">
+<div class="space-y-1.5">
+<h4 class="text-[13px] font-bold text-[#102A43] leading-snug">INC-1041 · Unverified refund promise</h4>
+<p class="text-[11.5px] text-[#718096]">Atlas Support · 14:25 UTC</p>
+<div class="flex items-center gap-2 pt-0.5">
+<span class="px-2 py-0.5 text-[10px] font-bold text-[#2B6CB0] bg-[#EBF8FF] rounded">Medium</span>
+<span class="px-2 py-0.5 text-[10px] font-bold text-[#2B6CB0] bg-[#EBF8FF] rounded">Auto-correcting</span>
+</div>
+</div>
+<i class="ph-bold ph-caret-right text-sm text-gray-400"></i>
+</article>
+<!-- Incident 5 -->
+<article class="bg-white border border-[#E2E8F0] rounded-xl p-3.5 flex items-center justify-between hover:bg-gray-50 transition cursor-pointer shadow-xs">
+<div class="space-y-1.5">
+<h4 class="text-[13px] font-bold text-[#102A43] leading-snug">INC-1036 · Customer data exposure</h4>
+<p class="text-[11.5px] text-[#718096]">Atlas Support · 14:06 UTC</p>
+<div class="flex items-center gap-2 pt-0.5">
+<span class="px-2 py-0.5 text-[10px] font-bold text-[#9C4221] bg-[#FFFAF0] rounded border border-[#FEEBC8]">High</span>
+<span class="px-2 py-0.5 text-[10px] font-bold text-[#2B8A3E] bg-[#EBFBEE] rounded">Resolved</span>
+</div>
+</div>
+<i class="ph-bold ph-caret-right text-sm text-gray-400"></i>
+</article>
+</div>
+<!-- List Footer Actions -->
+<div class="pt-3 pb-4 flex items-center justify-between">
+<span class="text-[11px] text-[#A0AEC0]">Updated 14:32 UTC</span>
+<button class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-white border border-[#CBD5E0] hover:bg-gray-50 text-[#102A43] font-bold text-[12px] rounded-lg shadow-xs transition" type="button">
+<i class="ph-bold ph-arrow-right text-[12px]"></i>
+<span>View all incidents</span>
+</button>
+</div>
+</section>
+<!-- END: RecentIncidentsSection -->
+</main>
+<!-- END: MainContainer -->
+</body></html>

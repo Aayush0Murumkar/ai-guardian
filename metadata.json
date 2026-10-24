@@ -1,0 +1,6 @@
+{
+  "name": "AI Guardian",
+  "description": "Enterprise AI Governance platform for monitoring, evaluating, and human-in-the-loop review of AI conversations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
